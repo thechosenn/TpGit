@@ -1,0 +1,40 @@
+int won = 0;
+    int validInput = 0;
+
+    for(int i=0; i<9; i++){
+        system("cls");
+        printBoard();
+        if(turn) cout<<"Player 1 Turn (symbol :'o')"<<endl;
+        else cout<<"Player 2 Turn (symbol :'x')"<<endl;
+        printInputMatrix();
+        cout<<"Enter Input from Input Matrix : ";
+        cin>>input;
+        while(input<0 || input>9){
+            cout<<"Invalid Input. Please Re-Enter input: ";
+            cin>>input;
+        }
+        if(turn) mark = 'o';
+        else mark= 'x';
+
+        validInput = addMark();
+        if(! validInput){
+            i--;
+            continue;
+        }
+        won = check();
+        if(won){
+            system("cls");
+            printBoard();
+            if(turn) cout<<endl<<"*** Player  1- You Won ***";
+            else cout<<endl<<"*** Player  2- You Won ***";
+            getch();
+            break;
+        }
+        if(i ==8){
+            system("cls");
+            printBoard();
+            cout<<endl<<"*** MATCH DRAW ***";
+        }
+        turn= !turn;
+
+    }
